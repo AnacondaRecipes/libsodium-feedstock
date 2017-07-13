@@ -10,21 +10,14 @@ source:
   sha256: fb6a9e879a2f674592e4328c5d9f79f082405ee4bb05cb6e679b90afe9e178f4
 
 build:
-  skip: true  # [win and py>35]
   number: 0
-  features:
-    - vc9     # [win and py27]
-    - vc10    # [win and py34]
-    - vc14    # [win and py>=35]
 
 requirements:
+  host:
+    - msinttypes  # [win and vc<14]
+
   build:
-    - python      # [win]
-    - msinttypes  # [win and py27]
-  run:
-    - vc 9   # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py>=35]
+    - {{ compiler('c') }}
 
 test:
   commands:
