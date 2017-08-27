@@ -4,6 +4,6 @@
 export MACOSX_DEPLOYMENT_TARGET=10.7
 
 ./configure --prefix=$PREFIX
-make
+make -j${CPU_COUNT} ${VERBOSE_AT}
 make check
 make install
