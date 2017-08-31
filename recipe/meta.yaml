@@ -27,6 +27,14 @@ about:
   home: https://github.com/jedisct1/libsodium
   license: ISC
   summary: A modern and easy-to-use crypto library.
+  
+  description: |
+    Sodium is a modern, easy-to-use software library for encryption,
+    decryption, signatures, password hashing and more. It is a portable,
+    cross-compilable, installable fork of NaCl. Its goal is to provide all of
+    the core operations needed to build higher-level cryptographic tools.
+  doc_url: http://libsodium.org
+  dev_url: https://github.com/jedisct1/libsodium
 
 extra:
   recipe-maintainers:
