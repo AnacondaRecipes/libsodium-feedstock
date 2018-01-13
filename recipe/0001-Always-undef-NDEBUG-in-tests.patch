@@ -1,0 +1,27 @@
+From 0b6370dd0a180d2e47a8506effda43785329fe0e Mon Sep 17 00:00:00 2001
+From: Frank Denis <github@pureftpd.org>
+Date: Wed, 6 Dec 2017 12:17:57 +0000
+Subject: [PATCH] Always undef NDEBUG in tests
+
+---
+ test/default/cmptest.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/test/default/cmptest.h b/test/default/cmptest.h
+index d1b9baf..c19dd53 100644
+--- a/test/default/cmptest.h
++++ b/test/default/cmptest.h
+@@ -2,6 +2,10 @@
+ #ifndef __CMPTEST_H__
+ #define __CMPTEST_H__
+ 
++#ifdef NDEBUG
++#/**/undef/**/ NDEBUG
++#endif
++
+ #include <assert.h>
+ #include <stdio.h>
+ #include <stdint.h>
+-- 
+1.8.3.1
+
