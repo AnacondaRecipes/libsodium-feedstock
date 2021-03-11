@@ -22,7 +22,7 @@ requirements:
 
   build:
     - {{ compiler('c') }}
-    - make  # [ppc64le]
+    - make  # [unix]
 
 test:
   commands:
