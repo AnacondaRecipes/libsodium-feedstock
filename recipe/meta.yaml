@@ -23,7 +23,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - make  # [unix]
-
+    - libtool  # [unix]
 test:
   commands:
     - test -f ${PREFIX}/include/sodium.h         # [unix]
