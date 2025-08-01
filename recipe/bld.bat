@@ -15,6 +15,8 @@ if %VS_MAJOR% == 9 (
     set "PATH=%CD%;%PATH%"
 )
 
+:: Create temp folder
+set TMP_FOLDER=%LIBRARY_PREFIX%\TEMP
 if "%VS_YEAR%" == "2008" (
   xcopy /s /y /i %RECIPE_DIR%\vs2008 %SRC_DIR%\builds\msvc\vs%VS_YEAR%
   copy %LIBRARY_INC%\stdint.h %SRC_DIR%\builds\msvc\
@@ -32,20 +34,21 @@ if "%VS_YEAR%" == "2008" (
   set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v90
 ) else (
   cd /d %SRC_DIR%\builds\msvc\vs%VS_YEAR%\
-  msbuild libsodium.sln /p:Configuration=DynRelease /p:Platform=%ARCH%
+  msbuild libsodium.sln /p:Configuration=DynRelease /p:Platform=%ARCH% /p:OutDir=%TMP_FOLDER%\dynamic\
   if errorlevel 1 exit 1
-  msbuild libsodium.sln /p:Configuration=StaticRelease /p:Platform=%ARCH%
+  msbuild libsodium.sln /p:Configuration=StaticRelease /p:Platform=%ARCH% /p:OutDir=%TMP_FOLDER%\static\
   if errorlevel 1 exit 1
-  set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v140
+  ::set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v140
+  set ARTIFACTS_DIR=%TMP_FOLDER%
 )
 
-if "%VS_YEAR%" == "2010" (
-  set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v100
-)
-
-if "%VS_YEAR%" == "2017" (
-  set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v141
-)
+::if "%VS_YEAR%" == "2010" (
+::  set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v100
+::)
+::
+::if "%VS_YEAR%" == "2017" (
+::  set ARTIFACTS_DIR=%SRC_DIR%\bin\%ARCH%\Release\v141
+::)
 
 if not exist %ARTIFACTS_DIR%\dynamic\libsodium.dll    exit 1
 
