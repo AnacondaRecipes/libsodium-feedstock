@@ -40,6 +40,7 @@ test:
 about:
   home: https://libsodium.org
   license: ISC
+  license_family: ISC
   license_file: LICENSE
   summary: A modern and easy-to-use crypto library.
   description: |
