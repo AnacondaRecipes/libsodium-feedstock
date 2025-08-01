@@ -38,7 +38,7 @@ test:
     - if not exist %LIBRARY_LIB%\libsodium_static.lib  exit 1  # [win]
 
 about:
-  home: http://libsodium.org
+  home: https://libsodium.org
   license: ISC
   license_file: LICENSE
   summary: A modern and easy-to-use crypto library.
