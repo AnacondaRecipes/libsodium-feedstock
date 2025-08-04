@@ -23,6 +23,7 @@ requirements:
 
   build:
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make  # [unix]
     - libtool  # [unix]
 test:
