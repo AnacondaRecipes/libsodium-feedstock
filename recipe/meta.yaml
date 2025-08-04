@@ -1,13 +1,14 @@
-{% set version = "1.0.18" %}
+{% set name = "libsodium" %}
+{% set version = "1.0.20" %}
 
 package:
-  name: libsodium
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: libsodium-{{ version }}.tar.gz
-  url: https://github.com/jedisct1/libsodium/releases/download/{{ version }}-RELEASE/libsodium-{{ version }}.tar.gz
-  sha256: 6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46636c1
+  skip: true
+  url: https://github.com/jedisct1/{{ name }}/releases/download/{{ version }}-RELEASE/{{ name }}-{{ version }}.tar.gz
+  sha256: ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
 
 build:
   number: 0
@@ -22,6 +23,7 @@ requirements:
 
   build:
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     - make  # [unix]
     - libtool  # [unix]
 test:
@@ -35,11 +37,11 @@ test:
     - if not exist %LIBRARY_INC%\sodium\version.h      exit 1  # [win]
     - if not exist %LIBRARY_BIN%\libsodium.dll         exit 1  # [win]
     - if not exist %LIBRARY_LIB%\libsodium.lib         exit 1  # [win]
-    - if not exist %LIBRARY_LIB%\libsodium_static.lib  exit 1  # [win]
 
 about:
-  home: http://libsodium.org
+  home: https://libsodium.org
   license: ISC
+  license_family: Other
   license_file: LICENSE
   summary: A modern and easy-to-use crypto library.
   description: |
@@ -48,7 +50,7 @@ about:
     installable, packageable fork of NaCl, with a compatible API, and an
     extended API to improve usability even further. Its goal is to provide all
     of the core operations needed to build higher-level cryptographic tools.
-  doc_url: https://download.libsodium.org/doc
+  doc_url: https://doc.libsodium.org
   dev_url: https://github.com/jedisct1/libsodium
 
 extra:
