@@ -8,11 +8,10 @@ if "%ARCH%" == "32" (
 )
 
 :: Set temp folder for the outputs
-set TMP_FOLDER=%LIBRARY_PREFIX%\TEMP
+set ARTIFACTS_DIR=%LIBRARY_PREFIX%\TEMP
 cd /d %SRC_DIR%\builds\msvc\vs%VS_YEAR%\
-msbuild libsodium.sln /p:Configuration=DynRelease /p:Platform=%ARCH% /p:OutDir=%TMP_FOLDER%\dynamic\
+msbuild libsodium.sln /p:Configuration=DynRelease /p:Platform=%ARCH% /p:OutDir=%ARTIFACTS_DIR%\
 if errorlevel 1 exit 1
-set ARTIFACTS_DIR=%TMP_FOLDER%
 
 :: Check for built DLLs
 if not exist %ARTIFACTS_DIR%\libsodium.dll    exit 1
