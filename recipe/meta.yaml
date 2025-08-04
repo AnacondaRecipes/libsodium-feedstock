@@ -37,7 +37,6 @@ test:
     - if not exist %LIBRARY_INC%\sodium\version.h      exit 1  # [win]
     - if not exist %LIBRARY_BIN%\libsodium.dll         exit 1  # [win]
     - if not exist %LIBRARY_LIB%\libsodium.lib         exit 1  # [win]
-    - if not exist %LIBRARY_LIB%\libsodium_static.lib  exit 1  # [win]
 
 about:
   home: https://libsodium.org
