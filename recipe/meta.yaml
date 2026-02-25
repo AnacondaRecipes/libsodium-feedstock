@@ -9,6 +9,9 @@ source:
   skip: true
   url: https://github.com/jedisct1/{{ name }}/releases/download/{{ version }}-RELEASE/{{ name }}-{{ version }}.tar.gz
   sha256: 9e4285c7a419e82dedb0be63a72eea357d6943bc3e28e6735bf600dd4883feaf
+  patches:  # [linux and aarch64]
+    # https://github.com/jedisct1/libsodium/issues/1502
+    - patches/0001-Fix-compilation-with-GCC-on-aarch64.patch  # [linux and aarch64]
 
 build:
   number: 0
