@@ -1,10 +1,14 @@
 @echo on
 
 :: Pick the correct architecture
-if "%ARCH%" == "32" (
+if /I "%ARCH%" == "32" (
   set ARCH=Win32
 ) else (
-  set ARCH=x64
+  if /I "%ARCH%" == "arm64" (
+    set ARCH=ARM64
+  ) else (
+    set ARCH=x64
+  )
 )
 
 :: Set temp folder for the outputs
