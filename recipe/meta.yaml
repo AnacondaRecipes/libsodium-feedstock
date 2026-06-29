@@ -1,5 +1,5 @@
 {% set name = "libsodium" %}
-{% set version = "1.0.20" %}
+{% set version = "1.0.21" %}
 
 package:
   name: {{ name }}
@@ -8,7 +8,10 @@ package:
 source:
   skip: true
   url: https://github.com/jedisct1/{{ name }}/releases/download/{{ version }}-RELEASE/{{ name }}-{{ version }}.tar.gz
-  sha256: ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
+  sha256: 9e4285c7a419e82dedb0be63a72eea357d6943bc3e28e6735bf600dd4883feaf
+  patches:  # [linux and aarch64]
+    # https://github.com/jedisct1/libsodium/issues/1502
+    - patches/0001-Fix-compilation-with-GCC-on-aarch64.patch  # [linux and aarch64]
 
 build:
   number: 0
@@ -18,21 +21,18 @@ build:
     - {{ pin_subpackage('libsodium', max_pin='x.x.x') }}
 
 requirements:
-  host:
-    - msinttypes  # [win and vc<14]
-
   build:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     - make  # [unix]
     - libtool  # [unix]
+
 test:
   commands:
     - test -f ${PREFIX}/include/sodium.h         # [unix]
     - test -f ${PREFIX}/lib/libsodium.a          # [unix]
     - test -f ${PREFIX}/lib/libsodium.dylib      # [osx]
     - test -f ${PREFIX}/lib/libsodium.so         # [linux]
-
     - if not exist %LIBRARY_INC%\sodium.h              exit 1  # [win]
     - if not exist %LIBRARY_INC%\sodium\version.h      exit 1  # [win]
     - if not exist %LIBRARY_BIN%\libsodium.dll         exit 1  # [win]
