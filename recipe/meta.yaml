@@ -14,7 +14,7 @@ source:
     - patches/0001-Fix-compilation-with-GCC-on-aarch64.patch  # [linux and aarch64]
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/libsodium/
@@ -39,7 +39,7 @@ test:
     - if not exist %LIBRARY_LIB%\libsodium.lib         exit 1  # [win]
 
 about:
-  home: https://libsodium.org
+  home: https://libsodium.gitbook.io/doc
   license: ISC
   license_family: Other
   license_file: LICENSE
@@ -50,7 +50,7 @@ about:
     installable, packageable fork of NaCl, with a compatible API, and an
     extended API to improve usability even further. Its goal is to provide all
     of the core operations needed to build higher-level cryptographic tools.
-  doc_url: https://doc.libsodium.org
+  doc_url: https://libsodium.gitbook.io/doc
   dev_url: https://github.com/jedisct1/libsodium
 
 extra:
