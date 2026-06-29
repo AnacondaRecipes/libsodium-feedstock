@@ -14,7 +14,7 @@ source:
     - patches/0001-Fix-compilation-with-GCC-on-aarch64.patch  # [linux and aarch64]
 
 build:
-  number: 0
+  number: 1
   run_exports:
     # so name changes in bugfix revisions.  Pin to bugfix revision.
     #    https://abi-laboratory.pro/tracker/timeline/libsodium/
